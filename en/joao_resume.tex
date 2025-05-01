@@ -1,0 +1,287 @@
+\documentclass[a4paper,11pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,139}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \footnotesize{#2} \\
+        \textit{\footnotesize{#3}} & \textit{\footnotesize{#4}} \\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubheadingSame}[3]{
+\vspace{0.5mm}
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textit{\footnotesize{#1}} & \footnotesize{#3} \\
+         & \textit{\footnotesize{#2}} \\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \footnotesize{#3} \\
+        \footnotesize{\textit{#2}} & \textit{\footnotesize{#4}}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Joao Catarino}} \small{[Joe-wow]}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    +44 7470 188 564 | \href{mailto:joao@catarino.pt}{joao@catarino.pt} | \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/joao-catarino-santos/}{joao-catarino-santos} 
+    }
+\end{center}
+
+
+\vspace{-4mm}
+
+\section{\textbf{Experience}}
+\vspace{-0.4mm}
+  \resumeSubHeadingListStart
+    \vspace{0.5mm}\item
+        \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+            \textbf{{J.P. Morgan [\href{https://www.jpmorgan.com/global}{\faIcon{globe}}]}} & \footnotesize{London, UK} \\
+            \textit{\footnotesize{Graduate - Associate - Senior Associate}} & \textit{\footnotesize{September 2020 - January 2023 - January 2024 - Present}} \\
+        \end{tabular*}
+        \vspace{-2.4mm}
+        
+      \resumeItemListStart
+        \item Served as a Buy-Side Equity Front Office Engineer in the Asset Management Investment Platform, focusing on backend core services and data engineering. The platform built on a microservices architecture using Python, Java, S3, and Cassandra, processes 1M+ daily requests and 30TB of financial data across hybrid cloud infrastructure. 
+
+        \item Partnered directly with Portfolio Managers and Quantitative Researchers to productionize ML models, alpha signals, risk metrics, and portfolio analytics for Equities desks. Currently expanding to Global Fixed Income, Currency and Commodities.
+
+        \item Led the development of a highly extensible low/no code Python ETL framework with 100+ modules, now used in 800+ pipelines daily. Reduced time to market of new signals from weeks to days, while providing cost savings, modernizing the technology stack and enhancing start-of-day resiliency.
+
+        \item Pioneered infrastructure as code, Airflow, containerization and event driven pipelines to improve team efficiency.
+
+        \item Integrated multi-source financial data feeds from Bloomberg, FactSet, MSCI, and proprietary feeds.
+      \resumeItemListEnd 
+      \resumeSubheadingSame 
+        {Software Engineering Intern}{Summer 2018 and Summer 2019}{Glasgow and London, UK}
+        \resumeItemListStart
+            \item Engineered a service to facilitate app-to-app authentication and created a proof of concept for modernizing the infrastructure to the cloud for Portfolio Implementation team.
+            \item Worked on the pricing, risk and trade management platform for Rates and Credit, in Python.
+        \resumeItemListEnd 
+  \resumeSubheading
+    {Seedrs (now Republic Europe) [\href{https://europe.republic.com/}{\faIcon{globe}}]}{Lisbon, Portugal}
+    {Data Science Intern}{Summer 2017}
+    \resumeItemListStart
+      \item Developed a recommendation system for the marketplace using pandas, numpy and scikit-learn.
+    \resumeItemListEnd
+  \resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{The University of Edinburgh [\href{https://informatics.ed.ac.uk/}{\faIcon{globe}}]}{Edinburgh, UK}
+{Master of Informatics}{September 2015 - July 2020}
+\resumeItemListStart
+\item First Class with Honours. System Design Project runner-up. Awarded the Edinburgh Award.
+\item Led student mentoring sessions and assisted in organizing the university’s largest hackathon.
+\item Distributed Systems, Databases, Distributed Ledgers, Machine Learning and Data Science courses.
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\vspace{-6mm}
+\section{\textbf{Leadership}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+\resumeProject
+  {Edinburgh University Trading and Investment Club}
+  {Head of IT}
+  {[\href{https://www.eutic.org.uk/}{\textcolor{darkblue}{\faIcon{globe}}}]}
+  {2018 - 2020}
+\resumeItemListStart
+  \item Responsible for all digital footprint of EUTIC and the Edinburgh Finance Conference.
+\resumeItemListEnd
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \footnotesize{\textit{Head of TMT Sector}} & \textit{\footnotesize{2017}}
+    \end{tabular*}
+    \vspace{-2.4mm}
+    \resumeItemListStart
+        \item Tripled member attendance and investment pitches. 
+        \item Best Performing Sector Prize and TMT members awarded Best Pitch Prize.
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+
+
+\vspace{-6mm}
+
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {Rhezus}
+  {Tools: Flask, Angular, DynamoDB, AWS Lambdas, Elastic Beanstalk}
+  {}
+  {}
+\resumeItemListStart
+  \item Built a web-based medical education tool used by 900+ students to prepare for the final national exam.
+\resumeItemListEnd
+
+\resumeProject
+  {Clave}
+  {Tools: Go, Swift, DynamoDB}
+  {}
+  {}
+\resumeItemListStart
+  \item Co-developed an iOS app for geofenced anonymous discussions.
+
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+ \resumeHeadingSkillStart
+  \resumeSubItem{Certifications:}
+    {AWS Associate Solutions Architect (2022), CFA Institute Investment Foundations (2021)}
+  \resumeSubItem{Tools:}
+    {Pandas, Numpy, Pydantic, Docker, Kubernetes, ECS, Lambdas, Terraform, Jenkins, SQL, Solidity}
+ \resumeHeadingSkillEnd
+
+\end{document}
